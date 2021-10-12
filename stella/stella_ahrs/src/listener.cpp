@@ -54,7 +54,6 @@ void *AHRS_thread(void *arg)
 
         if(ret != 0) return -1;
         sleep(1.0);
-
         Mw_AHRS_init(1);
 
         pthread_t thread;
