@@ -12,4 +12,4 @@ KERNEL=="ttyUSB*", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE:="077
 
 # set the udev rule , make the Bluetooth's device_port be fixed by BT
 #
-KERNEL=="ttyS*", MODE:="0777", SYMLINK+="BT"
+KERNEL=="ttyTHS1", MODE:="0777", SYMLINK+="BT"
