@@ -8,5 +8,7 @@ sudo cp $HOME/colcon_ws/src/STELLA_JETSON_NANO_ROS2/stella_bringup/stella.rules 
 echo " "
 echo "Restarting udev"
 echo ""
+sudo systemctl stop nvgetty
+sudo systemctl disable nvgetty
 sudo udevadm trigger
 echo "finish "
