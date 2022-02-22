@@ -4,7 +4,7 @@
   <name>stella_teleop_bluetooth</name>
   <version>0.0.0</version>
   <description>STELLA teleoperation node by bluetooth</description>
-  <maintainer email="kgh@ntrex.co.kr">Gyuha Kang</maintainer>
+  <maintainer email="lab@ntrex.co.kr">ntrex</maintainer>
   <license>Apache License 2.0</license>
 
   <test_depend>ament_copyright</test_depend>
