@@ -34,7 +34,7 @@ include_directories(
     ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(${PROJECT_NAME}_node src/main.cpp src/MwSerial.cpp src/SerialCOM.cpp src/UsbPacket.cpp src/UsbSerial.cpp src/MDC24D100D.cpp src/MwIEEE754.cpp src/mobilerobot.cpp)
+add_executable(${PROJECT_NAME}_node src/main.cpp)
 ament_target_dependencies(${PROJECT_NAME}_node
   "rclcpp"
   "geometry_msgs"
@@ -43,7 +43,7 @@ ament_target_dependencies(${PROJECT_NAME}_node
   "tf2_ros"
   "tf2"
 )
-#target_link_libraries(${PROJECT_NAME}_node ${CMAKE_CURRENT_SOURCE_DIR}/lib/pi_mw24d100d.a)
+target_link_libraries(${PROJECT_NAME}_node ${CMAKE_CURRENT_SOURCE_DIR}/lib/jetson_md.a)
 
 ################################################################################
 # Install
