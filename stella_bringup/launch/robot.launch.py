@@ -29,17 +29,7 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
-#    TURTLEBOT3_MODEL = os.environ['TURTLEBOT3_MODEL']
-
-#    usb_port = LaunchConfiguration('usb_port', default='/dev/ttyACM0')
-
-#    tb3_param_dir = LaunchConfiguration(
-#        'tb3_param_dir',
-#        default=os.path.join(
-#            get_package_share_directory('turtlebot3_bringup'),
-#            'param',
-#            TURTLEBOT3_MODEL + '.yaml'))
-
+    
     md_pkg_dir = LaunchConfiguration(
         'md_pkg_dir',
         default=os.path.join(get_package_share_directory('stella_md'), 'launch'))
@@ -60,16 +50,6 @@ def generate_launch_description():
             default_value=use_sim_time,
             description='Use simulation (Gazebo) clock if true'),
 
-#        DeclareLaunchArgument(
-#            'usb_port',
-#            default_value=usb_port,
-#            description='Connected USB port with OpenCR'),
-
-#        DeclareLaunchArgument(
-#            'tb3_param_dir',
-#            default_value=tb3_param_dir,
-#            description='Full path to turtlebot3 parameter file to load'),
-
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
                 [ThisLaunchFileDir(), '/stella_state_publisher.launch.py']),
@@ -87,12 +67,4 @@ def generate_launch_description():
         IncludeLaunchDescription(
             PythonLaunchDescriptionSource([ahrs_pkg_dir, '/stella_ahrs_launch.py']),
         ),
-
-
-#        Node(
-#            package='turtlebot3_node',
-#            executable='turtlebot3_ros',
-#            parameters=[tb3_param_dir],
-#            arguments=['-i', usb_port],
-#            output='screen'),
     ])
