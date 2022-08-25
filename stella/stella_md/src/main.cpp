@@ -23,7 +23,7 @@ void stellaN1_node::update_read()
 
 void stellaN1_node::update_write()
 {
-  MDC24D_move(id,left_rpm,right_rpm);
+  MDC24D_move(id,right_rpm,left_rpm);
 }
 
 void *motor_read_thread(void *arg)
@@ -45,18 +45,16 @@ void stellaN1_node::command_velocity_callback(const geometry_msgs::msg::Twist::S
 
 bool stellaN1_node::update_odometry()
 {  
-  delta_left  = (encoder[0] - left_encoder_prev) *-1;
-  delta_right = (encoder[1] - right_encoder_prev) *-1;
+  delta_left  = (encoder[1] - left_encoder_prev) *-1;
+  delta_right = (encoder[0] - right_encoder_prev) *-1;
 
-//  if(delta_left  != 0 || delta_right != 0) printf("delta_left : %d      delta_right : %d     \n",delta_left,delta_right);
-
-  delta_s = -1*(delta_left + delta_right) / 2.0 / pulse_per_distance;
+  delta_s = (delta_left + delta_right) / 2.0 / pulse_per_distance;
   delta_th = ((delta_left - delta_right) / wheel_to_wheel_d / pulse_per_distance);
-  delta_x = (delta_s * cos(th + delta_th / 2.0));
-  delta_y = (delta_s * sin(th + delta_th / 2.0));
+  delta_x = (delta_s * cos(th + delta_th));
+  delta_y = (delta_s * sin(th + delta_th));
   
-  x -= delta_x;
-  y -= delta_y;
+  x += delta_x;
+  y += delta_y;
   th += delta_th;
    
   tf2::Quaternion Quaternion;
@@ -102,8 +100,8 @@ bool stellaN1_node::update_odometry()
   odom.header.stamp = time_now;
   odom_pub_->publish(odom);
   
-  left_encoder_prev = encoder[0];
-  right_encoder_prev = encoder[1];
+  left_encoder_prev = encoder[1];
+  right_encoder_prev = encoder[0];
   
 
   return true;
