@@ -26,8 +26,8 @@ using std::placeholders::_1;
 
 bool run = true;
 int id = 1;
-    float left_rpm = 0, right_rpm = 0;
-    int encoder[2] = {0,};
+float left_rpm = 0, right_rpm = 0;
+int encoder[2] = {0,};
 
 class stellaN1_node : public rclcpp::Node
 {
